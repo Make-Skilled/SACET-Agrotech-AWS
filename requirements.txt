@@ -1,0 +1,13 @@
+pandas
+markupsafe==2.0.1
+flask==1.1.4
+scikit-learn==1.2.0 
+numpy==1.23.0 
+Cython==0.29.33
+torch
+torchvision
+requests
+Pillow
+gunicorn == 20.0.4
+pymongo
+werkzeug

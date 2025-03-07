@@ -1,0 +1,120 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<!-- Hero Section -->
+<section class="relative bg-cover bg-center h-screen" style="background-image: url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');">
+	<div class="absolute inset-0 bg-black bg-opacity-50"></div>
+	<div class="relative container mx-auto px-4 h-full flex items-center">
+		<div class="text-center mx-auto max-w-3xl">
+			<h1 class="text-5xl font-bold text-white mb-6">Crop Prediction</h1>
+			<h2 class="text-2xl text-white mb-8">Get intelligent decisions about your farming</h2>
+			<div class="bg-white bg-opacity-90 p-6 rounded-lg shadow-xl">
+				<h3 class="text-xl font-semibold text-gray-800 mb-4">Here are some questions we'll answer:</h3>
+				<ul class="text-left space-y-3 text-gray-700">
+					<li class="flex items-center">
+						<svg class="w-5 h-5 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+						</svg>
+						What crop to plant here?
+					</li>
+					<li class="flex items-center">
+						<svg class="w-5 h-5 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+						</svg>
+						What fertilizer to use?
+					</li>
+					<li class="flex items-center">
+						<svg class="w-5 h-5 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+						</svg>
+						Which disease does your crop have?
+					</li>
+					<li class="flex items-center">
+						<svg class="w-5 h-5 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+						</svg>
+						How to cure the disease?
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- About Section -->
+<section class="py-20 bg-gray-50">
+	<div class="container mx-auto px-4">
+		<h2 class="text-4xl font-bold text-center text-gray-800 mb-12">About Us</h2>
+		<div class="flex flex-wrap items-center">
+			<div class="w-full md:w-1/2 mb-8 md:mb-0">
+				<img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" 
+					 class="rounded-lg shadow-xl w-full" alt="Modern farming" />
+			</div>
+			<div class="w-full md:w-1/2 md:pl-12">
+				<h3 class="text-2xl font-semibold text-gray-800 mb-4">Improving Agriculture, Improving Lives</h3>
+				<p class="text-gray-600 leading-relaxed">
+					We use state-of-the-art machine learning and deep learning technologies to help you guide through
+					the entire farming process. Make informed decisions to understand the demographics of your area,
+					understand the factors that affect your crop and keep them healthy for a super awesome successful yield.
+				</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Services Section -->
+<section class="py-20">
+	<div class="container mx-auto px-4">
+		<h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Our Services</h2>
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+			<!-- Crop Service -->
+			<div class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:transform hover:scale-105">
+				<img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" 
+					 class="w-full h-48 object-cover" alt="Crop recommendation" />
+				<div class="p-6">
+					<h3 class="text-xl font-semibold text-gray-800 mb-3">Crop Recommendation</h3>
+					<p class="text-gray-600 mb-4">
+						Get recommendations about the type of crops best suited for your conditions and soil type.
+					</p>
+					<a href="{{ url_for('crop_recommend') }}" 
+					   class="inline-block bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors duration-300">
+						Learn More
+					</a>
+				</div>
+			</div>
+
+			<!-- Fertilizer Service -->
+			<div class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:transform hover:scale-105">
+				<img src="https://images.unsplash.com/photo-1592991538534-00972b6f59ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+					 class="w-full h-48 object-cover" alt="Fertilizer recommendation" />
+				<div class="p-6">
+					<h3 class="text-xl font-semibold text-gray-800 mb-3">Fertilizer Recommendation</h3>
+					<p class="text-gray-600 mb-4">
+						Get personalized fertilizer recommendations based on your soil type and crop selection.
+					</p>
+					<a href="{{ url_for('fertilizer_recommendation') }}" 
+					   class="inline-block bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors duration-300">
+						Learn More
+					</a>
+				</div>
+			</div>
+
+			<!-- Disease Prediction Service -->
+			<div class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:transform hover:scale-105">
+				<img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+					 class="w-full h-48 object-cover" alt="Disease prediction" />
+				<div class="p-6">
+					<h3 class="text-xl font-semibold text-gray-800 mb-3">Disease Prediction</h3>
+					<p class="text-gray-600 mb-4">
+						Upload images of your crops to identify diseases and get treatment recommendations.
+					</p>
+					<a href="{{ url_for('disease_prediction') }}" 
+					   class="inline-block bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors duration-300">
+						Learn More
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

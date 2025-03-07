@@ -1,0 +1,115 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<div class="min-h-screen bg-gradient-to-b from-gray-50 to-green-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-2xl mx-auto">
+        <h1 class="text-3xl font-bold text-center text-gray-900 mb-8">
+            Get Personalized Fertilizer Recommendations
+        </h1>
+
+        <div class="bg-white shadow-xl rounded-lg p-8">
+            <form method="POST" action="{{ url_for('fert_recommend') }}" class="space-y-6">
+                <!-- Nitrogen Input -->
+                <div class="space-y-2">
+                    <label for="Nitrogen" class="block text-sm font-medium text-gray-700">Nitrogen Content</label>
+                    <div class="mt-1 relative rounded-md shadow-sm">
+                        <input type="number"
+                               class="block w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                               id="Nitrogen"
+                               name="nitrogen"
+                               placeholder="Enter the value (example: 50)"
+                               required>
+                        <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                            <span class="text-gray-500 sm:text-sm">NPK</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phosphorous Input -->
+                <div class="space-y-2">
+                    <label for="Phosphorous" class="block text-sm font-medium text-gray-700">Phosphorous Content</label>
+                    <div class="mt-1 relative rounded-md shadow-sm">
+                        <input type="number"
+                               class="block w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                               id="Phosphorous"
+                               name="phosphorous"
+                               placeholder="Enter the value (example: 50)"
+                               required>
+                        <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                            <span class="text-gray-500 sm:text-sm">NPK</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Potassium Input -->
+                <div class="space-y-2">
+                    <label for="Pottasium" class="block text-sm font-medium text-gray-700">Potassium Content</label>
+                    <div class="mt-1 relative rounded-md shadow-sm">
+                        <input type="number"
+                               class="block w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                               id="Pottasium"
+                               name="pottasium"
+                               placeholder="Enter the value (example: 50)"
+                               required>
+                        <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                            <span class="text-gray-500 sm:text-sm">NPK</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Crop Selection -->
+                <div class="space-y-2">
+                    <label for="crop" class="block text-sm font-medium text-gray-700">Select Your Crop</label>
+                    <div class="mt-1 relative rounded-md shadow-sm">
+                        <select name="cropname"
+                                id="crop"
+                                class="block w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                                required>
+                            <option value="" disabled selected>Select a crop</option>
+                            <option value="rice">Rice</option>
+                            <option value="maize">Maize</option>
+                            <option value="chickpea">Chickpea</option>
+                            <option value="kidneybeans">Kidney Beans</option>
+                            <option value="pigeonpeas">Pigeon Peas</option>
+                            <option value="mothbeans">Moth Beans</option>
+                            <option value="mungbean">Mung Bean</option>
+                            <option value="blackgram">Black Gram</option>
+                            <option value="lentil">Lentil</option>
+                            <option value="pomegranate">Pomegranate</option>
+                            <option value="banana">Banana</option>
+                            <option value="mango">Mango</option>
+                            <option value="grapes">Grapes</option>
+                            <option value="watermelon">Watermelon</option>
+                            <option value="muskmelon">Muskmelon</option>
+                            <option value="apple">Apple</option>
+                            <option value="orange">Orange</option>
+                            <option value="papaya">Papaya</option>
+                            <option value="coconut">Coconut</option>
+                            <option value="cotton">Cotton</option>
+                            <option value="jute">Jute</option>
+                            <option value="coffee">Coffee</option>
+                        </select>
+                        <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                            <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="pt-6">
+                    <button type="submit"
+                            class="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-200">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        Get Recommendation
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

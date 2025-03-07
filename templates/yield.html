@@ -1,0 +1,154 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<div class="min-h-screen bg-gradient-to-b from-gray-50 to-green-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-4">Crop Yield Prediction</h1>
+            <p class="text-gray-600 text-lg">Get accurate yield predictions based on environmental conditions</p>
+        </div>
+
+        <div class="bg-white shadow-xl rounded-lg overflow-hidden">
+            <div class="bg-green-600 px-4 py-5 sm:px-6">
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-white mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                    <h2 class="text-xl font-semibold text-white">Enter Crop Details</h2>
+                </div>
+            </div>
+
+            <form action="{{ url_for('predict_yield') }}" method="post" class="p-8 space-y-6">
+                <!-- Crop Type and Precipitation -->
+                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                    <div class="space-y-2">
+                        <label for="crop_type" class="block text-sm font-medium text-gray-700">Crop Type</label>
+                        <select id="crop_type" name="crop_type" required
+                                class="block w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                            <option value="">Select Crop Type</option>
+                            <option value="Sugarcane">Sugarcane</option>
+                            <option value="Soybean">Soybean</option>
+                            <option value="Millets">Millets</option>
+                            <option value="Maize">Maize</option>
+                            <option value="Cotton">Cotton</option>
+                            <option value="Pulses">Pulses</option>
+                            <option value="Groundnut">Groundnut</option>
+                            <option value="Barley">Barley</option>
+                            <option value="Wheat">Wheat</option>
+                            <option value="Rice">Rice</option>
+                        </select>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label for="precipitation" class="block text-sm font-medium text-gray-700">Precipitation (mm)</label>
+                        <div class="mt-1 relative rounded-md shadow-sm">
+                            <input type="number" step="0.1" id="precipitation" name="precipitation" required
+                                   class="block w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                                   placeholder="Enter precipitation">
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                <span class="text-gray-500 sm:text-sm">mm</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Temperature and Soil Moisture -->
+                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                    <div class="space-y-2">
+                        <label for="temperature" class="block text-sm font-medium text-gray-700">Temperature (°C)</label>
+                        <div class="mt-1 relative rounded-md shadow-sm">
+                            <input type="number" step="0.1" id="temperature" name="temperature" required
+                                   class="block w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                                   placeholder="Enter temperature">
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                <span class="text-gray-500 sm:text-sm">°C</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label for="soil_moisture" class="block text-sm font-medium text-gray-700">Soil Moisture (%)</label>
+                        <div class="mt-1 relative rounded-md shadow-sm">
+                            <input type="number" step="0.1" id="soil_moisture" name="soil_moisture" required
+                                   class="block w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                                   placeholder="Enter soil moisture">
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                <span class="text-gray-500 sm:text-sm">%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NDVI and Soil Nitrogen -->
+                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                    <div class="space-y-2">
+                        <label for="ndvi" class="block text-sm font-medium text-gray-700">NDVI (0-1)</label>
+                        <input type="number" step="0.01" min="0" max="1" id="ndvi" name="ndvi" required
+                               class="block w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                               placeholder="Enter NDVI value">
+                    </div>
+
+                    <div class="space-y-2">
+                        <label for="soil_nitrogen" class="block text-sm font-medium text-gray-700">Soil Nitrogen (mg/kg)</label>
+                        <div class="mt-1 relative rounded-md shadow-sm">
+                            <input type="number" step="0.1" id="soil_nitrogen" name="soil_nitrogen" required
+                                   class="block w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                                   placeholder="Enter soil nitrogen">
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                <span class="text-gray-500 sm:text-sm">mg/kg</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Planting Date -->
+                <div class="space-y-2">
+                    <label for="planting_date" class="block text-sm font-medium text-gray-700">Planting Date</label>
+                    <input type="date" id="planting_date" name="planting_date" required
+                           class="block w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                </div>
+
+                <!-- Submit Button -->
+                <div class="pt-6">
+                    <button type="submit"
+                            class="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-200">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                        Predict Yield
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Info Section -->
+        <div class="mt-8 bg-white shadow-lg rounded-lg p-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">About the Prediction Model</h3>
+            <p class="text-gray-600 mb-4">
+                Our yield prediction model uses advanced machine learning algorithms to analyze various environmental and agricultural factors to provide accurate crop yield estimates.
+            </p>
+            <ul class="space-y-3 text-gray-600">
+                <li class="flex items-start">
+                    <svg class="w-5 h-5 text-green-500 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    Considers multiple environmental factors
+                </li>
+                <li class="flex items-start">
+                    <svg class="w-5 h-5 text-green-500 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    Updated with recent agricultural data
+                </li>
+                <li class="flex items-start">
+                    <svg class="w-5 h-5 text-green-500 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    Provides region-specific predictions
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
